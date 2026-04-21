@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Educacional</title>
+  <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+
+  <h1> Dashboard - Matrículas Região Sul</h1>
+
+  <!-- FILTROS -->
+  <div class="filters">
+    <label>Ano:
+      <select id="year">
+        <option>2018</option>
+        <option>2019</option>
+        <option>2020</option>
+        <option>2021</option>
+        <option selected>2022</option>
+      </select>
+    </label>
+
+    <label>Categoria:
+      <select id="category">
+        <option value="publico">Público</option>
+        <option value="privado">Privado</option>
+      </select>
+    </label>
+
+    <label>Modalidade:
+      <select id="modality">
+        <option value="presencial">Presencial</option>
+        <option value="ead">EAD</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- TOTAIS -->
+  <div class="card">
+    <h2>Totais</h2>
+    <p>Presencial: <span id="totalPresential">-</span></p>
+    <p>EAD: <span id="totalEAD">-</span></p>
+    <p>Total: <span id="totalAll">-</span></p>
+  </div>
+
+  <!-- RANKING CURSOS -->
+  <div class="card">
+    <h2>Ranking de Cursos</h2>
+    <table id="coursesTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Curso</th>
+          <th>Matrículas</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- RANKING IES -->
+  <div class="card">
+    <h2>Ranking de Instituições</h2>
+    <table id="institutionsTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Instituição</th>
+          <th>Alunos</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="static/script.js"></script>
+</body>
+</html>

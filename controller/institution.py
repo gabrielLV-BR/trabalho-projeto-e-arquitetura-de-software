@@ -27,7 +27,7 @@ class InstitutionController:
         response = []
         base_index = (args.page - 1) * args.page_size + 1
         for index, ranking in enumerate(institutions):
-            institution = Course.get(ranking.id)
+            institution = Institution.get(ranking.id)
             response.append(
                 InstitutionRanking(
                     base_index + index,

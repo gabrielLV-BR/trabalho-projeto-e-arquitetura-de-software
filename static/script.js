@@ -90,7 +90,7 @@ async function renderInstitutions() {
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${item.position}</td>
-        <td>${item.institution.name}</td>
+        <td>${item.institution.ies}</td>
         <td>${item.totalStudents}</td>
       `;
       tbody.appendChild(tr);

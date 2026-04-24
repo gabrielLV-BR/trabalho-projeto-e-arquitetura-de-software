@@ -43,3 +43,21 @@ td {
 tr:hover {
   background: #f1f1f1;
 }
+
+.pageControl {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.pageControl button {
+  background-color: #2c3e50;
+  border: none;
+  color: white;
+
+  width: 2rem;
+  height: 2rem;
+
+  cursor: pointer;
+}

@@ -3,6 +3,8 @@ const state = {
   year: 2022,
   category: "publico",
   modality: "presencial",
+  coursePage: 1,
+  institutionPage: 1,
   listeners: [],
 
   subscribe(fn) {
@@ -30,6 +32,32 @@ document.getElementById("modality").addEventListener("change", (e) => {
   state.notify();
 });
 
+document.getElementById("institutionPagePrevious").addEventListener("click", (e) => {
+  if (state.institutionPage > 1) {
+    state.institutionPage -= 1;
+    state.notify();
+  }
+});
+
+document.getElementById("institutionPageNext").addEventListener("click", (e) => {
+  state.institutionPage += 1;
+  state.notify();
+});
+
+
+document.getElementById("coursePagePrevious").addEventListener("click", (e) => {
+  if (state.coursePage > 1) {
+    state.coursePage -= 1;
+    state.notify();
+  }
+});
+
+document.getElementById("coursePageNext").addEventListener("click", (e) => {
+  state.coursePage += 1;
+  state.notify();
+});
+
+
 // API CALLS
 async function fetchTotal() {
   const res = await fetch(`/alunos/total/${state.year}`);
@@ -37,12 +65,12 @@ async function fetchTotal() {
 }
 
 async function fetchCourses() {
-  const res = await fetch(`/cursos/ranking/${state.year}/${state.category}/${state.modality}`);
+  const res = await fetch(`/cursos/ranking/${state.year}/${state.category}/${state.modality}?page=${state.coursePage}`);
   return res.json();
 }
 
 async function fetchInstitutions() {
-  const res = await fetch(`/instituicoes/ranking/${state.year}/${state.category}/${state.modality}`);
+  const res = await fetch(`/instituicoes/ranking/${state.year}/${state.category}/${state.modality}?page=${state.institutionPage}`);
   return res.json();
 }
 
@@ -60,6 +88,7 @@ async function renderTotals() {
 
 async function renderCourses() {
   const tbody = document.querySelector("#coursesTable tbody");
+  const page = document.querySelector("#coursePage")
   tbody.innerHTML = "";
 
   try {
@@ -74,6 +103,8 @@ async function renderCourses() {
       `;
       tbody.appendChild(tr);
     });
+
+    page.innerHTML = `${state.coursePage}`
   } catch {
     alert("Erro ao carregar cursos");
   }
@@ -81,6 +112,7 @@ async function renderCourses() {
 
 async function renderInstitutions() {
   const tbody = document.querySelector("#institutionsTable tbody");
+  const page = document.querySelector("#institutionPage")
   tbody.innerHTML = "";
 
   try {
@@ -95,6 +127,8 @@ async function renderInstitutions() {
       `;
       tbody.appendChild(tr);
     });
+
+    page.innerHTML = `${state.institutionPage}`
   } catch {
     alert("Erro ao carregar instituições");
   }
